@@ -1,26 +1,28 @@
 import { create } from 'zustand';
 import { v4 as uuidv4 } from "uuid";
 
-const useContactStore = create((set) => ({
+const useContactStore = create((set, get) => ({
     contacts: [],
-    addContact: (firstName, lastName, phone) =>
-        set((state) => ({
-            ...state,
-            contacts:[
-                ...state,
-                {
-                    id: uuidv4(),
-                    firstName,
-                    lastName,
-                    phone
-                }
-            ]
-        })),
+    addContact: (firstName, lastName, phone) => {
+        const newContact = {
+         id: uuidv4(),
+         firstName,
+         lastName,
+         phone,
+        };
 
-    deleteContact: (id) =>
-        set((state) => ({
-            contacts: state.contacts.filter((contact) => contact.id != id)
-        })),
+        const updatedContacts = [...get().contacts, newContact];
+        set({ contacts: updatedContacts })
+
+        localStorage.setItem('contacts', JSON.stringify(updatedContacts));
+    },
+
+    deleteContact: (id) => {
+        const updatedDelContacts = get().contacts.filter((contact) => contact.id != id);
+        set({ contacts: updatedDelContacts });
+        localStorage.setItem('contacts', JSON.stringify(updatedDelContacts))
+    },
+        
 
     updateContact: (id, updatedData) =>
         set((state) => {

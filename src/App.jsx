@@ -21,7 +21,7 @@ export default function App() {
         <ContactForm />
       </div>
       <div className="left">
-        <ContactSearch/>
+          <ContactSearch/>
           <ContactList />
       </div>
     </div>
