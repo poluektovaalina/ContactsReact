@@ -53,22 +53,22 @@
   }
   .left {
     width: 50%;
-    .contact_search{
+    .contact_search {
       display: flex;
       align-items: center;
       gap: 15px;
       padding: 8px;
       background-color: #fff;
       border-radius: 50px;
-      .ico{
-        svg{
+      .ico {
+        svg {
           display: block;
         }
-        &:hover{
+        &:hover {
           cursor: pointer;
         }
       }
-      input{
+      input {
         background-color: #fff;
         outline: none;
         border: none;
@@ -105,6 +105,26 @@
         &:nth-last-child(-n + 1) {
           border-bottom: 0;
         }
+        input {
+          padding: 5px 10px;
+          flex: 10%;
+        }
+        .btn_edited {
+          width: 100%;
+          padding: 5px 7px 2px 7px;
+          button {
+            padding: 3px;
+            background-color: #fff;
+            outline: none;
+            border-radius: 15px;
+            border: 15px;
+            svg {
+              display: block;
+              width: 20px;
+              height: 20px;
+            }
+          }
+        }
         span {
           padding: 5px 10px;
           flex: 10%;
@@ -131,7 +151,7 @@
             justify-content: center;
             align-items: center;
             border-radius: 15px;
-            &:hover{
+            &:hover {
               cursor: pointer;
             }
           }

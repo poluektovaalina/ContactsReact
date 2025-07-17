@@ -2,7 +2,13 @@ import ContactItem from "./ContactItem.jsx";
 import useContactStore from "../store/useContactStore.js";
 
 export default function ContactList() {
-  const contacts = useContactStore((state) => state.contacts)
+  const contacts = useContactStore((state) => state.contacts);
+  const searchTerm = useContactStore((state) => state.searchTerm);
+
+  const filteredContacts = contacts.filter(contact =>
+    contact.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    contact.lastName.toLowerCase().includes(searchTerm.toLowerCase())
+  );
   return (
     <div className="table_contact">
       <div className="contact_main">
@@ -10,7 +16,7 @@ export default function ContactList() {
         <span>Фамилия</span>
         <span>Номер телефона</span>
       </div>
-      {contacts.map((contact) => (
+      {filteredContacts.map((contact) => (
         <ContactItem key={contact.id} contact={contact}/>
       ))}
     </div>
